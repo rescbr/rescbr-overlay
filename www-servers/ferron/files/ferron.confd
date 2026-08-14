@@ -1,0 +1,7 @@
+# /etc/conf.d/ferron
+
+# User to run ferron as
+FERRON_USER="ferron"
+
+# Command line options passed to ferron
+FERRON_OPTS="-c /etc/ferron.kdl"

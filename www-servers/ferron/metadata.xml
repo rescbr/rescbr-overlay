@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>maintainer@example.com</email>
+		<name>Ferron Maintainer</name>
+	</maintainer>
+	<longdescription lang="en">
+		Ferron is a fast, modern, and easily configurable web server with
+		automatic TLS certificate provisioning.
+	</longdescription>
+	<use>
+		<flag name="systemd">Install systemd service file</flag>
+		<flag name="tokio">Use tokio async runtime instead of default monoio (io_uring)</flag>
+	</use>
+	<upstream>
+		<remote-id type="github">ferronweb/ferron</remote-id>
+		<remote-id type="homepage">https://ferron.sh</remote-id>
+	</upstream>
+</pkgmetadata>

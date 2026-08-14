@@ -1,0 +1,27 @@
+#!/sbin/openrc-run
+
+description="Ferron web server"
+command="/usr/sbin/ferron"
+command_args="${FERRON_OPTS:--c /etc/ferron.kdl}"
+command_user="${FERRON_USER:-ferron}"
+supervisor="supervise-daemon"
+pidfile="/run/${RC_SVCNAME}.pid"
+output_log="/var/log/${RC_SVCNAME}/${RC_SVCNAME}.log"
+error_log="/var/log/${RC_SVCNAME}/${RC_SVCNAME}.log"
+
+depend() {
+	need net
+	after logger
+}
+
+start_pre() {
+	checkpath --directory --owner "${command_user}:${command_user}" --mode 0755 /run/ferron
+	checkpath --directory --owner "${command_user}:${command_user}" --mode 0750 /var/log/${RC_SVCNAME}
+	ulimit -n 12000
+}
+
+reload() {
+	ebegin "Reloading ${description}"
+	supervise-daemon "${RC_SVCNAME}" --signal HUP
+	eend $?
+}
